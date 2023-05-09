@@ -1,0 +1,29 @@
+{
+  "server_key": "fdafafretqertrtrtwtwtrwtrwt",
+  "payment_type": "3_months",
+  "transaction_version" : 3,
+  "transaction_details": {
+    "amount": 100000,
+    "order_id": "test-test-12",
+    "items": [{
+      "id":"test1",
+      "name":"Kabel Iphone Hiyahiyaaaa",
+      "price":100000,
+      "type":"Handhphone",
+      "url":"http://merchant.com/elektronik",
+      "quantity":1,
+      "parent_type":"SELLER",
+      "parent_id":"SELLERX"
+
+    }
+    ]
+  },
+  "customer_details": {
+    "first_name": "D Romi",
+    "email": "a@a.com"
+  },
+  "push_uri": "https://eshop.kredivo.com/v1/notifyStaging",
+  "back_to_store_uri": "https://kredivo.com",
+  "user_cancel_uri": "https://prod.kredivo.com",
+  "order_status_uri": "https://eshop.kredivo.com"
+}
