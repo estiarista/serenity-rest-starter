@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 import starter.base.method.MethodAction;
 
 import java.io.File;
+import java.io.IOException;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static net.serenitybdd.rest.SerenityRest.restAssuredThat;
@@ -15,14 +16,18 @@ public class CheckoutStepdefs {
 
     MethodAction method = new MethodAction();
     String pathPayload = "src/test/resources/payload/";
+    File file;
 
     @When("User send POST request for {string} with body {string}")
-    public void userSendPOSTRequestForWithBody(String action, String objPayload) {
+    public void userSendPOSTRequestForWithBody(String action, String objPayload) throws IOException {
+        pathPayload += objPayload;
+        file = new File(String.format(pathPayload));
         switch (action) {
             case "checkout":
-                String path = pathPayload + objPayload;
-                File file = new File(String.format(path));
                 method.postWithAuthorization(file);
+                break;
+            case "authenticate user":
+                method.postWithAuthenticateUser(file);
                 break;
         }
     }
