@@ -2,6 +2,7 @@ package starter.base.api;
 
 public class ApiEndpoints {
 
+    public static final String BASE_URL = "https://staging.kredivo.com/";
     public static final String BASE_URL_V2 = "https://staging.kredivo.com/kredivo/v2";
 
     public static final String BASE_URL_V3 = "https://staging.kredivo.com/kredivo/v3";

@@ -1,7 +1,6 @@
 @test
 Feature: Create Merchant Checkout Using OTP
 
-  @test
   Scenario: Checkout URL
     When User send POST request for "checkout" with body "checkout_url.json"
     Then The response body should be with jsonSchema "response_checkout_url.json"

@@ -1,0 +1,7 @@
+{
+  "authTrexStagToken": {
+    "clientID": "pay",
+    "clientSecret": "pay123",
+    "tokenURL": "https://auth-staging.kredivo.com/oauth/token"
+  }
+}
