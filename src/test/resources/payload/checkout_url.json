@@ -4,7 +4,7 @@
   "transaction_version" : 3,
   "transaction_details": {
     "amount": 100000,
-    "order_id": "test-test-19",
+    "order_id": "Test-tools#{{timestamp}}",
     "items": [{
       "id":"test1",
       "name":"Kabel Iphone Hiyahiyaaaa",

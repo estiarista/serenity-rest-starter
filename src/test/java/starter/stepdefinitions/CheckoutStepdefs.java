@@ -29,20 +29,45 @@ public class CheckoutStepdefs {
             case "authenticate user":
                 method.postWithAuthenticateUser(file);
                 break;
-        }
-    }
-
-    @When("User send GET request for {string} with body {string}")
-    public void userSendGETRequestForWithBody(String action, String objPayload) {
-        switch (action) {
-            case "get the transaction":
-                String path = "src/test/resources/payload/" + objPayload;
-                File file = new File(String.format(path));
-                method.getWithNoAuth(file);
+            case "change payment":
+                method.postWithPaymentType(file);
+                break;
+            case "send challenge":
+                method.postWithSendChallenge(file);
+                break;
+            case "verify challenge":
+                method.postWithVerifyChallenge(file);
+                break;
+            case "get transaction status":
+                method.postWithTransactionStatus(file);
+                break;
+            default:
+                System.out.println("Not found parameter");
                 break;
         }
     }
 
+    @When("User send GET request for {string} with body {string}")
+    public void userSendGETRequestForWithBody(String action, String objPayload) throws IOException {
+        pathPayload += objPayload;
+        file = new File(String.format(pathPayload));
+        switch (action) {
+            case "get the transaction":
+                method.getWithNoAuth(file);
+                break;
+            default:
+                System.out.println("Not found parameter");
+                break;
+        }
+    }
+
+    @When("User send GET request for {string}")
+    public void userSendGETRequestFor(String action) throws IOException {
+        switch (action) {
+            case "get otp":
+                method.getWithOTP();
+        }
+    }
 
     @Given("User already doing {string}")
     public void userAlreadyDoing(String arg0) {

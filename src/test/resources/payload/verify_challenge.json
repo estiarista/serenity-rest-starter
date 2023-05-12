@@ -1,0 +1,5 @@
+{
+  "transaction_token":"{{token}}",
+  "challenge_type":1,
+  "challenge_value": "{{otp}}"
+}

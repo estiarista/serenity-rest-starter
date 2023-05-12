@@ -1,0 +1,4 @@
+{
+  "transaction_token":"{{token}}",
+  "payment_type":"{{date}}"
+}

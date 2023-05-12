@@ -1,0 +1,201 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "transaction_context": {
+      "type": "object",
+      "properties": {
+        "item_list": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "category": {
+                  "type": "string"
+                },
+                "p_id": {
+                  "type": "integer"
+                },
+                "sku_type": {
+                  "type": "integer"
+                },
+                "aggregated_price": {
+                  "type": "string"
+                },
+                "sku": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "unit_price": {
+                  "type": "string"
+                },
+                "parent_id": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "parent_type": {
+                  "type": "string"
+                },
+                "total_amount": {
+                  "type": "string"
+                },
+                "quantity": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "category",
+                "p_id",
+                "sku_type",
+                "aggregated_price",
+                "sku",
+                "url",
+                "unit_price",
+                "parent_id",
+                "status",
+                "name",
+                "parent_type",
+                "total_amount",
+                "quantity"
+              ]
+            }
+          ]
+        },
+        "amount": {
+          "type": "string"
+        },
+        "cancellation_url": {
+          "type": "string"
+        },
+        "transaction_token": {
+          "type": "string"
+        },
+        "order_id": {
+          "type": "string"
+        },
+        "redirect_url": {
+          "type": "string"
+        },
+        "transaction_status": {
+          "type": "integer"
+        },
+        "is_challenge": {
+          "type": "boolean"
+        },
+        "voucher_info": {
+          "type": "string"
+        },
+        "is_express_checkout": {
+          "type": "boolean"
+        },
+        "merchant_details": {
+          "type": "object",
+          "properties": {
+            "tokenize_user": {
+              "type": "boolean"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "tokenize_user",
+            "name"
+          ]
+        },
+        "checkout_amount": {
+          "type": "string"
+        },
+        "ask_otp_method": {
+          "type": "boolean"
+        },
+        "applied_payment_type": {
+          "type": "string"
+        },
+        "otp_method": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "name",
+                "value"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "name",
+                "value"
+              ]
+            }
+          ]
+        },
+        "transaction_version": {
+          "type": "integer"
+        },
+        "expiration_time": {
+          "type": "string"
+        },
+        "tokenize_user": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "item_list",
+        "amount",
+        "cancellation_url",
+        "transaction_token",
+        "order_id",
+        "redirect_url",
+        "transaction_status",
+        "is_challenge",
+        "voucher_info",
+        "is_express_checkout",
+        "merchant_details",
+        "checkout_amount",
+        "ask_otp_method",
+        "applied_payment_type",
+        "otp_method",
+        "transaction_version",
+        "expiration_time",
+        "tokenize_user"
+      ]
+    },
+    "status": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "transaction_context",
+    "status",
+    "message"
+  ]
+}

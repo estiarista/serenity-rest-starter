@@ -6,10 +6,15 @@ import io.restassured.response.Response;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Timestamp;
 
 public class DataUtils {
 
     private static String response;
+
+    public static String charRemoveAt(String str, int p) {
+        return str.substring(0, p) + str.substring(p + 1);
+    }
 
     public static String generateStringFromResource(String path) throws IOException {
 
@@ -23,10 +28,20 @@ public class DataUtils {
         return js.getString(jsonPath);
     }
 
+    public static String readFileintoString(File file) throws IOException {
+        byte[] input = Files.readAllBytes(Paths.get(file.toURI()));
+        return new String(input);
+    }
+
     public static <T> T getDataFromJsonpath(Response request, String jpath) {
         JsonPath jsonpath = request.jsonPath();
 
         return jsonpath.get(jpath);
+    }
+
+    public static String getTimestamp() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        return String.valueOf(timestamp.getTime());
     }
 
     public static void writeUsingFileWriter(String data, String filename) {

@@ -1,0 +1,4 @@
+{
+  "transaction_token":"{{token}}",
+  "otp_method": 1
+}
