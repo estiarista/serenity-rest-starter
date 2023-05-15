@@ -35,9 +35,6 @@
                 "parent_id": {
                   "type": "string"
                 },
-                "status": {
-                  "type": "string"
-                },
                 "name": {
                   "type": "string"
                 },
