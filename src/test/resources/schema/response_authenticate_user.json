@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "challenge_details": {
+      "type": "object",
+      "properties": {
+        "verify_challenge": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "verify_challenge"
+      ]
+    },
+    "transaction_token": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "challenge_details",
+    "transaction_token",
+    "message",
+    "status"
+  ]
+}

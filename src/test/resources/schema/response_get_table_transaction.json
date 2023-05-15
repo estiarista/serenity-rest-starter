@@ -35,9 +35,6 @@
         "lenderId": {
           "type": "integer"
         },
-        "userId": {
-          "type": "null"
-        },
         "distributorId": {
           "type": "integer"
         },
