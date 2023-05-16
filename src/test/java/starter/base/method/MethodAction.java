@@ -35,8 +35,8 @@ public class MethodAction {
 
         String data1 = SerenityRest.lastResponse().jsonPath().getJsonObject("data.transactionToken").toString();
         String data2 = SerenityRest.lastResponse().jsonPath().getJsonObject("data.paymentType").toString();
-        System.out.println("Transaction Token : "+data1);
-        System.out.println("Transaction Token : "+data2);
+        System.out.println("Transaction Token : " + data1);
+        System.out.println("Transaction Token : " + data2);
 
         DataUtils.writeUsingFileWriter(data1, "transaction_token");
         DataUtils.writeUsingFileWriter(data2, "payment_type");
@@ -108,12 +108,93 @@ public class MethodAction {
 
         SerenityRest.given()
                 .header("Content-type", "application/json")
-                .get(apiEndpoints.get_otp+phone_number).then().extract().response();
+                .get(apiEndpoints.get_otp + phone_number).then().extract().response();
 
         String data = SerenityRest.lastResponse().jsonPath().getJsonObject("otp").toString();
-        System.out.println("OTP Number : "+data);
+        System.out.println("OTP Number : " + data);
         DataUtils.writeUsingFileWriter(data, "otp_number");
     }
+
+    public void postWithParamtoCalculate(File file) throws IOException {
+
+//        System.out.println("isi file =>>" + file);
+        String merchant_id = DataUtils.getTestData("src/test/resources/payload/params_merchant_payment.json", "merchant_id");
+        String date = DataUtils.getTestData("src/test/resources/payload/params_merchant_payment.json", "selectedDate");
+        String cookie = DataUtils.getTestData("src/test/resources/payload/merchant_payment_cookie.json", "Cookie");
+
+        SerenityRest.given()
+                .header("Content-type", "application/json")
+                .header("Cookie", cookie)
+                .post(apiEndpoints.calculate_merchant_payment + merchant_id + "?selectedDate=" + date).then().extract().response();
+        ;
+    }
+
+    public void getWithParamtoOutstandingPayment(File file) throws IOException {
+
+
+        String status = DataUtils.getTestData("src/test/resources/payload/params_merchant_payment.json", "statusWaiting");
+        String cookie = DataUtils.getTestData("src/test/resources/payload/merchant_payment_cookie.json", "Cookie");
+
+        SerenityRest.given()
+                .header("Content-type", "application/json")
+                .header("Cookie", cookie)
+                .get(apiEndpoints.get_status_payment + status).then().extract().response();
+
+        String paymentCycleID = SerenityRest.lastResponse().jsonPath().getJsonObject("rows[0]['id']").toString();
+        DataUtils.writeUsingFileWriter(paymentCycleID, "merchant_payment_cycle_id");
+
+        System.out.println("cycle id => " + paymentCycleID);
+    }
+
+    public void putWithBodytoDownloadMCM(File file) throws IOException {
+        String fileName = System.getProperty("user.dir") + "/src/test/java/outputfile/merchant_payment_cycle_id.txt";
+        String cookie = DataUtils.getTestData("src/test/resources/payload/merchant_payment_cookie.json", "Cookie");
+
+        String content = DataUtils.readFileintoString(file);
+
+        SerenityRest.given()
+                .header("Content-type", "application/json")
+                .header("Cookie", cookie)
+                .body(content.toString().replace("{{token}}", DataUtils.readUsingFileReader(fileName)))
+                .put(apiEndpoints.put_status_payment).then().extract().response();
+    }
+
+    public void putWithBodytoIndicatePayment(File file) throws IOException {
+        String fileName = System.getProperty("user.dir") + "/src/test/java/outputfile/merchant_payment_cycle_id.txt";
+        String cookie = DataUtils.getTestData("src/test/resources/payload/merchant_payment_cookie.json", "Cookie");
+
+        String content = DataUtils.readFileintoString(file);
+
+        SerenityRest.given()
+                .header("Content-type", "application/json")
+                .header("Cookie", cookie)
+                .body(content.toString().replace("{{token}}", DataUtils.readUsingFileReader(fileName)))
+                .put(apiEndpoints.put_status_payment).then().extract().response();
+    }
+
+    public void getWithParamtoGetWaitingPayment() throws IOException {
+        String status = DataUtils.getTestData("src/test/resources/payload/params_merchant_payment.json", "statusPending");
+        String cookie = DataUtils.getTestData("src/test/resources/payload/merchant_payment_cookie.json", "Cookie");
+
+        SerenityRest.given()
+                .header("Content-type", "application/json")
+                .header("Cookie", cookie)
+                .get(apiEndpoints.get_status_payment + status).then().extract().response();
+    }
+
+    public void getWithParamtoGetPaymentHistory() throws IOException {
+        String cookie = DataUtils.getTestData("src/test/resources/payload/merchant_payment_cookie.json", "Cookie");
+        String status = DataUtils.getTestData("src/test/resources/payload/get_payment_history.json", "status");
+        String startDate = DataUtils.getTestData("src/test/resources/payload/get_payment_history.json", "startDate");
+        String endDate = DataUtils.getTestData("src/test/resources/payload/get_payment_history.json", "endDate");
+        String utc = DataUtils.getTestData("src/test/resources/payload/get_payment_history.json", "utcOffset");
+
+        SerenityRest.given()
+                .header("Content-type", "application/json")
+                .header("Cookie", cookie)
+                .get(apiEndpoints.get_status_payment + status + "&startDate=" + startDate + "&endDate=" + endDate + "&utcOffset=" + utc).then().extract().response();
+    }
+
 
     public void postWithVerifyChallenge(File file) throws IOException {
         String fileName1 = System.getProperty("user.dir") + "/src/test/java/outputfile/transaction_token.txt";

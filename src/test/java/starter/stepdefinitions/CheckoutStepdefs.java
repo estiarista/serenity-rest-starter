@@ -41,6 +41,9 @@ public class CheckoutStepdefs {
             case "get transaction status":
                 method.postWithTransactionStatus(file);
                 break;
+            case "calculate":
+                method.postWithParamtoCalculate(file);
+                break;
             default:
                 System.out.println("Not found parameter");
                 break;
@@ -48,15 +51,39 @@ public class CheckoutStepdefs {
     }
 
     @When("User send GET request for {string} with body {string}")
-    public void userSendGETRequestForWithBody(String action, String objPayload) throws IOException {
+    public void userSendGETRequestForWithBody(String action, String objPayload) throws IOException, InterruptedException {
         pathPayload += objPayload;
         file = new File(String.format(pathPayload));
         switch (action) {
             case "get the transaction":
                 method.getWithNoAuth(file);
                 break;
+            case "get the outstanding payment":
+                Thread.sleep(5000);
+                method.getWithParamtoOutstandingPayment(file);
+                break;
+            case "get the waiting payment":
+                method.getWithParamtoGetWaitingPayment();
+                break;
+            case "get payment history":
+                method.getWithParamtoGetPaymentHistory();
+                break;
             default:
                 System.out.println("Not found parameter");
+                break;
+        }
+    }
+
+    @When("User send PUT request for {string} with body {string}")
+    public void userSendPUTRequestForWithBody(String action, String objPayload) throws IOException {
+        pathPayload += objPayload;
+        file = new File(String.format(pathPayload));
+        switch (action) {
+            case "download mcm":
+                method.putWithBodytoDownloadMCM(file);
+                break;
+            case "indicate payment as successful":
+                method.putWithBodytoIndicatePayment(file);
                 break;
         }
     }
@@ -80,4 +107,6 @@ public class CheckoutStepdefs {
         String path = "schema/" + objSchema;
         restAssuredThat(validatableResponse -> validatableResponse.assertThat().log().all().statusCode(200).body(matchesJsonSchemaInClasspath(path)));
     }
+
+
 }
