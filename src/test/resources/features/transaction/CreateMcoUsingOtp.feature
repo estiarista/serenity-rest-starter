@@ -8,7 +8,6 @@ Feature: Create Merchant Checkout Using OTP
 
   @hit @transaction_token
   Scenario: Get the Transaction
-    Given User already doing "Checkout URL"
     When User send GET request for "get the transaction" with body "get_table_transaction.json"
     Then The response body should be with jsonSchema "response_get_table_transaction.json"
 
@@ -41,3 +40,9 @@ Feature: Create Merchant Checkout Using OTP
   Scenario: Get Transaction Status
     When User send POST request for "get transaction status" with body "transaction_status.json"
     Then The response body should be with jsonSchema "response_transaction_status.json"
+
+  @hit @check_transaction_status
+  Scenario: Get Transaction Status
+    When User send GET request for "check transaction status" with body "check_transaction_status.json"
+    Then The response body should be with jsonSchema "response_check_transaction_status.json"
+    And Validate response body "transaction_status" is "4"

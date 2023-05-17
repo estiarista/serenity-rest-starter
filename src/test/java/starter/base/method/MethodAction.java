@@ -4,12 +4,18 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import net.serenitybdd.rest.SerenityRest;
+import org.hamcrest.Matchers;
 import starter.base.api.ApiEndpoints;
 
 import javax.xml.crypto.Data;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static net.serenitybdd.rest.SerenityRest.restAssuredThat;
+import static org.hamcrest.Matchers.isA;
 
 public class MethodAction {
     ApiEndpoints apiEndpoints = new ApiEndpoints();
@@ -235,6 +241,23 @@ public class MethodAction {
                 .auth().oauth2(authToken)
                 .body(content.toString().replace("{{token}}", DataUtils.readUsingFileReader(fileName)))
                 .post(apiEndpoints.get_transaction_status).then().extract().response();
+    }
+
+    public void getWithParamtoGetTransactionStatus() throws IOException {
+        String fileName = System.getProperty("user.dir") + "/src/test/java/outputfile/transaction_token.txt";
+
+        SerenityRest.given()
+                .header("Content-type", "application/json")
+                .queryParam("limit", "1")
+                .queryParam("transactionToken", DataUtils.readUsingFileReader(fileName))
+                .get(apiEndpoints.check_transaction_status).then().extract().response();
+    }
+
+    public void validateResponseBodyInTransactionStatus(String value) {
+        restAssuredThat(validatableResponse ->
+                validatableResponse.assertThat()
+                        .body("data.status", Matchers.equalTo(Integer.valueOf(value))));
+
     }
 
 }

@@ -68,6 +68,9 @@ public class CheckoutStepdefs {
             case "get payment history":
                 method.getWithParamtoGetPaymentHistory();
                 break;
+            case "check transaction status":
+                method.getWithParamtoGetTransactionStatus();
+                break;
             default:
                 System.out.println("Not found parameter");
                 break;
@@ -108,5 +111,15 @@ public class CheckoutStepdefs {
         restAssuredThat(validatableResponse -> validatableResponse.assertThat().log().all().statusCode(200).body(matchesJsonSchemaInClasspath(path)));
     }
 
-
+    @And("Validate response body {string} is {string}")
+    public void validateResponseBodyIs(String action, String value){
+        switch (action) {
+            case "transaction_status":
+                method.validateResponseBodyInTransactionStatus(value);
+                break;
+            default:
+                System.out.println("Not found parameter");
+                break;
+        }
+    }
 }

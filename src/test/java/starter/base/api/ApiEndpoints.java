@@ -15,6 +15,8 @@ public class ApiEndpoints {
     public static final String verify_challenge = BASE_URL_V3 + "/verify_challenge";
     public static final String get_transaction_status = BASE_URL_V3 + "/get_transaction_status";
 
+    public static final String check_transaction_status = BASE_URL_TREX_ECS_STAGING + "/api/testing/transaction";
+
     //Merchant Payment
     public static final String calculate_merchant_payment = BASE_URL_TREX_ECS_STAGING + "/merchant/payments/calculate/";
     public static final String get_status_payment = BASE_URL_TREX_ECS_STAGING + "/merchant/payments?status=";

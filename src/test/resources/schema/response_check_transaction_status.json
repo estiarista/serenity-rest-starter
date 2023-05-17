@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "orderID": {
+          "type": "string"
+        },
+        "subMerchantId": {
+          "type": "null"
+        },
+        "paymentType": {
+          "type": "string"
+        },
+        "transactionToken": {
+          "type": "string"
+        },
+        "transactionType": {
+          "type": "integer"
+        },
+        "status": {
+          "type": "integer"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "merchantId": {
+          "type": "integer"
+        },
+        "lenderId": {
+          "type": "integer"
+        },
+        "userId": {
+          "type": "integer"
+        },
+        "distributorId": {
+          "type": "integer"
+        },
+        "transactionDate": {
+          "type": "string"
+        },
+        "checkoutAmount": {
+          "type": "string"
+        },
+        "discountAmount": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "id",
+        "orderID",
+        "subMerchantId",
+        "paymentType",
+        "transactionToken",
+        "transactionType",
+        "status",
+        "amount",
+        "merchantId",
+        "lenderId",
+        "userId",
+        "distributorId",
+        "transactionDate",
+        "checkoutAmount",
+        "discountAmount"
+      ]
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

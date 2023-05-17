@@ -1,6 +1,6 @@
 {
-  "server_key": "fdafafretqertrtrtwtwtrwtrwt",
-  "payment_type": "3_months",
+  "server_key": "f6c1b9a47395c02ca2b6aa3728c50d1b",
+  "payment_type": "30_days",
   "transaction_version" : 3,
   "transaction_details": {
     "amount": 100000,
