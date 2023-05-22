@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"pretty"},
         features = "classpath:features",
-        tags = "@testsuite"
+        tags = "@SendStatementLetter"
 //        tags = "@testsuite"
 
 )
