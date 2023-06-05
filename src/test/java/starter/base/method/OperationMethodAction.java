@@ -40,7 +40,7 @@ public class OperationMethodAction {
                 .post(ApiEndpoints.post_approval_statement_letter).then().extract().response();
 
     }
-
+//
     public void getSubmitStatementletter(File fileSL) throws IOException{
         String accessToken = DataUtils.getTestData("src/test/resources/payload/payload_operation_team/api_token_cow.json", "access-token");
         String userID = DataUtils.getTestData("src/test/resources/payload/payload_operation_team/send_statement_letter.json", "user_id");
